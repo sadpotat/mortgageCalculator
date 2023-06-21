@@ -3,42 +3,33 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         // getting values
-        Scanner scanner = new Scanner(System.in);
+        int principal = (int) readInput("Principal ($1K - $1M)", 1_000, 1_000_000);
+        float annualInterest = (float) readInput("Annual interest Rate", 0, 30);
+        byte period = (byte) readInput("Period (Years)", 0, 30);
 
-        int principal;
-        while (true) {
-            System.out.print("Principal ($1K - $1M): ");
-            principal = scanner.nextInt();
-            if (principal >= 1000 && principal <= 1_000_000)
-                break;
-            System.out.println("Enter a number between 1,000 and 1,000,000");
-        }
-
-        float annualInterest;
-        while (true) {
-            System.out.print("Annual interest Rate: ");
-            annualInterest = scanner.nextFloat();
-            if (annualInterest > 0f && annualInterest <= 30f)
-                break;
-            System.out.println("Enter a number greater than 0 and less than 30");
-        }
-
-        byte period;
-        while (true) {
-            System.out.print("Period (Years): ");
-            period = scanner.nextByte();
-            if (period >= 1 && period <= 30)
-                break;
-            System.out.println("Enter a number greater than 1 and less than 30");
-        }
-
+        // calculation
         double mortgage = calcMortgage(principal, annualInterest, period);
 
         // formatting the output
         String mortStr = NumberFormat.getCurrencyInstance().format(mortgage);
         System.out.print("Mortgage: " + mortStr);
+    }
+
+    private static double readInput(
+            String prompt,
+            double lBound,
+            double rBound) {
+        Scanner scanner = new Scanner(System.in);
+        double userInput;
+        while (true) {
+            System.out.print(prompt + ": ");
+            userInput = scanner.nextDouble();
+            if (userInput >= lBound && userInput <= rBound)
+                break;
+            System.out.println("Enter a value between " + lBound + " and " + rBound);
+        }
+        return userInput;
     }
 
     private static double calcMortgage(
