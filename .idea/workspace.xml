@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29bc1332-b8e7-4063-98f2-444266a37b33" name="Changes" comment="refactored code, moved all calculations to a new method.">
+    <list default="true" id="29bc1332-b8e7-4063-98f2-444266a37b33" name="Changes" comment="refactored code, moved all validation checks to readInput()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -69,14 +69,22 @@
       <option name="project" value="LOCAL" />
       <updated>1687328815476</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="refactored code, moved all validation checks to readInput()">
+      <created>1687330197155</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1687330197155</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added project files" />
     <MESSAGE value="added input validation" />
     <MESSAGE value="refactored code, moved all calculations to a new method." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored code, moved all calculations to a new method." />
+    <MESSAGE value="refactored code, moved all validation checks to readInput()" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored code, moved all validation checks to readInput()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
