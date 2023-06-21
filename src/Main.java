@@ -10,13 +10,13 @@ public class Main {
 
         // calculation
         double mortgage = calcMortgage(principal, annualInterest, period);
-        double[] paymentSchedule = calcPayments(principal, annualInterest, period);
+        double[] balanceAfterPayment = calcBalances(principal, annualInterest, period);
 
         // displaying mortgage
         displayMortgage(mortgage);
 
-        // displaying paymentSchedule
-        displayPaymentSchedule(paymentSchedule);
+        // displaying balanceAfterPayment
+        displayPaymentSchedule(balanceAfterPayment);
     }
 
     private static double readInput(
@@ -32,6 +32,7 @@ public class Main {
                 break;
             System.out.println("Enter a value between " + lBound + " and " + rBound);
         }
+
         return userInput;
     }
 
@@ -44,22 +45,21 @@ public class Main {
         float monthlyInterest = annualInterest/1200;
         short nPayments = (short) (period * 12);
 
-        double mortgage = principal
+        return principal
                 *(monthlyInterest*Math.pow(1.0+monthlyInterest, nPayments))
                 /(Math.pow(1.0+monthlyInterest, nPayments)-1);
-
-        return mortgage;
     }
 
-    private static double[] calcPayments(int principal, float annualInterest, byte period){
+    private static double[] calcBalances(int principal, float annualInterest, byte period){
         // calculations
         float monthlyInterest = annualInterest/1200;
         short nTotalPayments = (short) (period * 12);
         double [] remainingBalance = new double[nTotalPayments];
 
-        for (int i=1; i<=nTotalPayments; i++) {
-            remainingBalance[i-1] = principal * ( (Math.pow(1 + monthlyInterest, nTotalPayments) - Math.pow(1 + monthlyInterest, i)) / (Math.pow(1 + monthlyInterest, nTotalPayments) - 1) );
+        for (int paymentNum=1; paymentNum<=nTotalPayments; paymentNum++) {
+            remainingBalance[paymentNum-1] = principal * ( (Math.pow(1 + monthlyInterest, nTotalPayments) - Math.pow(1 + monthlyInterest, paymentNum)) / (Math.pow(1 + monthlyInterest, nTotalPayments) - 1) );
         }
+
         return remainingBalance;
     }
 
@@ -67,19 +67,18 @@ public class Main {
         return NumberFormat.getCurrencyInstance().format(amount);
     }
     private static void displayMortgage(double mortgage) {
-        System.out.println(" ");
+        System.out.println();
         System.out.println("Mortgage");
         System.out.println("--------");
         System.out.println("Monthly Payments: " + convert2String(mortgage));
     }
 
-    private static void displayPaymentSchedule(double[] paymentSchedule){
-        System.out.println(" ");
+    private static void displayPaymentSchedule(double[] balanceAfterPayment){
+        System.out.println();
         System.out.println("Payment Schedule");
         System.out.println("----------------");
-        int arrayLength = paymentSchedule.length;
-        for (int i=0; i<arrayLength; i++){
-            System.out.println(convert2String(paymentSchedule[i]));
+        for (double balance: balanceAfterPayment){
+            System.out.println(convert2String(balance));
         }
     }
 }
