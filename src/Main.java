@@ -34,16 +34,26 @@ public class Main {
             System.out.println("Enter a number greater than 1 and less than 30");
         }
 
+        double mortgage = calcMortgage(principal, annualInterest, period);
+
+        // formatting the output
+        String mortStr = NumberFormat.getCurrencyInstance().format(mortgage);
+        System.out.print("Mortgage: " + mortStr);
+    }
+
+    private static double calcMortgage(
+            int principal,
+            float annualInterest,
+            byte period) {
+
         // calculations
         float monthlyInterest = annualInterest/1200;
-        int nPayments = period * 12;
+        short nPayments = (short) (period * 12);
 
         double mortgage = principal
                 *(monthlyInterest*Math.pow(1.0+monthlyInterest, nPayments))
                 /(Math.pow(1.0+monthlyInterest, nPayments)-1);
 
-        // formatting the output
-        String mortStr = NumberFormat.getCurrencyInstance().format(mortgage);
-        System.out.print("Mortgage: " + mortStr);
+        return mortgage;
     }
 }
